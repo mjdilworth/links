@@ -57,10 +57,13 @@ type
 ### the source code is found in links.go
 To run the code
 >go run links.go
+
 and to build the binary in the src dir
 >go build links.go
+
 and to install the binary into the project bin directory. Fron the prohect src directory
 >go install github.com/user_name/links 
+
 and to run the binary
 links -url http://wiprodigital.com
 
