@@ -21,14 +21,15 @@ create src/github.com/user_name/hello directory, where user_name is your github 
 
 inside hello directory create a hello.go file and insert the following text
 
-`package main
+```
+package main
 
 import "fmt"
 
 func main(){
         fmt.Println("Hello world")
-}`
-
+}
+```
 
 save this file and then run 
 >go install github.com/mjdilworth/hello
