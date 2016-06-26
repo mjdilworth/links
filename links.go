@@ -43,7 +43,7 @@ func main() {
 	//parse input
 	flag.Parse()
 
-	//using govalidator - does it add value??
+	//using govalidator - does it add enough value??
 	validURL := govalidator.IsURL(*URLPtr)
 	if validURL == false {
 		fmt.Printf("%s is NOT a valid URL\n", *URLPtr)
@@ -87,7 +87,7 @@ func GetLinks(url string) (*Links, error) {
 	wg.Add(1)
 	//my first link
 	seen[url] = true
-	go visit(url, queue, wg)
+	go getURL(url, queue, wg)
 
 	// Waits for all goroutines to finish and signals the fact to
 	// the `done` channel in order to terminate the select loop.
@@ -126,7 +126,7 @@ func GetLinks(url string) (*Links, error) {
 			seen[link.url] = true
 
 			wg.Add(1)
-			go visit(link.url, queue, wg)
+			go getURL(link.url, queue, wg)
 		case <-done:
 			return links, nil
 		}
@@ -167,8 +167,8 @@ func (s *Links) PrintLinks() {
 	}
 }
 
-// Visits a URL and enqueues extracted links for further processing.
-func visit(url string, queue chan *urlLink, wg *sync.WaitGroup) {
+// getURL a URL and enqueues extracted links for further processing.
+func getURL(url string, queue chan *urlLink, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	// i will remove this from final code
@@ -203,8 +203,7 @@ func AbsoluteURL(href, parent string) (string, error) {
 }
 
 // ExtractLinks - Extracts and returns a list of absolute URLs (links and assets)
-// from an HTML document. Accepts a reader as it is returned from
-// the HTTP client.
+// from an HTML document.
 func ExtractLinks(url string, body io.Reader) []*urlLink {
 	links := make([]*urlLink, 0)
 	z := html.NewTokenizer(body)
