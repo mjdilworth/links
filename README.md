@@ -1,9 +1,6 @@
 # links
-A small go app to crawl a web site and print out the links to the pages it finds. these are sperated into off site links, resources and pages.
-
-
+A small go app to crawl a web site and print out the links to the pages it finds. These are separated into off site links, resources and pages.
 ### First we need to setup go.  On a Linux box we can do the following:
-
 sudo yum install git
 sudo yum install golang
 mkdir go
@@ -18,7 +15,6 @@ Create env file
 >source /etc/profile.d/goenv.sh
 
 to test installation
-
 create src/github.com/user_name/hello directory, where user_name is your github user
 
 inside hello directory create a hello.go file and insert the following text
@@ -37,7 +33,7 @@ save this file and then run
 
 >go install github.com/user_name/hello
 
-this will creat the binary in your GOPATH/bin
+This will create the binary in your GOPATH/bin
 
 run this "hello" binary
 
@@ -55,6 +51,7 @@ type
 ### get a couple of third party packages used in links - good example of how to reuse code - many solved problems.
 #### used to validate the seed URL entered on the command line
 >go get "github.com/asaskevich/govalidator"
+
 #### used to parse HTML pages
 >go get "golang.org/x/net/html"
 
@@ -65,7 +62,7 @@ To run the code
 and to build the binary in the src dir
 >go build links.go
 
-and to install the binary into the project bin directory. Fron the prohect src directory
+and to install the binary into the project bin directory. From the project src directory
 >go install github.com/user_name/links 
 
 and to run the binary (-url switch is optional and can be used to change the seeding page)
