@@ -39,17 +39,20 @@ func NewLinks() *Links {
 func main() {
 
 	//input default values
-	URLPtr := flag.String("url", "http://www.e-nspect.com", "a valide URL")
+	URLPtr := flag.String("url", "http://wiprodigital.com", "a valide URL")
 	//parse input
 	flag.Parse()
 
-	//using govalidator - doe sit add value??
+	//using govalidator - does it add value??
 	validURL := govalidator.IsURL(*URLPtr)
 	if validURL == false {
 		fmt.Printf("%s is NOT a valid URL\n", *URLPtr)
 		return
 	}
 
+	//print something out to say we are working
+	fmt.Println("Starting....")
+	fmt.Println("")
 	//get my links
 	linkmap, err := GetLinks(*URLPtr)
 	if err != nil {
@@ -168,7 +171,8 @@ func (s *Links) PrintLinks() {
 func visit(url string, queue chan *urlLink, wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	fmt.Println("Visiting", url)
+	// i will remove this from final code
+	//fmt.Println("Visiting", url)
 
 	resp, err := http.Get(url)
 	if err != nil {
