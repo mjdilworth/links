@@ -268,7 +268,6 @@ func ExtractLinks(url string, body io.Reader) []*urlLink {
 
 				isAsset = true
 			}
-
 			//add to be processed..
 			links = append(links, &urlLink{href, url, isAsset})
 		}
